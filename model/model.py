@@ -17,6 +17,7 @@ class Model:
         self.load_tour()
         self.load_attrazioni()
         self.load_relazioni()
+        self.tour_attrazione = TourDAO.get_tour_attrazioni()
 
     @staticmethod
     def load_regioni():
@@ -38,8 +39,19 @@ class Model:
             --> Ogni Tour ha un set di Attrazione.
             --> Ogni Attrazione ha un set di Tour.
         """
+        result = []
+        for tour in self.tour_map:
+            id_tour1 = tour.id
+            for dizionario in self.tour_attrazione:
+                id_tour2 = dizionario['id_tour']
+                id_attrazione = dizionario['id_attrazione']
+                if id_tour1 == id_tour2:
+                    result.append((id_tour1, id_attrazione))
 
-        # TODO
+        return result
+
+
+
 
     def genera_pacchetto(self, id_regione: str, max_giorni: int = None, max_budget: float = None):
         """
