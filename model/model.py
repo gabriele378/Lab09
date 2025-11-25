@@ -72,13 +72,13 @@ class Model:
         self._valore_ottimo = -1
 
         # TODO
-        # recupero tutti i tour della regione selezionata
+
         tour_regioni = [
             t for t in self.tour_map.values()
             if t.id_regione == id_regione
         ]
 
-        # ordino per costo crescente (opzionale, può aiutare nella ricorsione)
+
         tour_regioni.sort(key=lambda x: x.costo)
 
         # avvio la ricorsione
